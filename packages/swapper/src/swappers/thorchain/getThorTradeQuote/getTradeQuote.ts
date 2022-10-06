@@ -39,7 +39,7 @@ export const getThorTradeQuote: GetThorTradeQuote = async ({ deps, input }) => {
   const {
     sellAsset,
     buyAsset,
-    sellAmount: sellAmountCryptoPrecision,
+    sellAmountCryptoPrecision,
     bip44Params,
     chainId,
     receiveAddress,
@@ -101,13 +101,13 @@ export const getThorTradeQuote: GetThorTradeQuote = async ({ deps, input }) => {
     const commonQuoteFields: CommonQuoteFields = {
       rate,
       maximum: MAX_THORCHAIN_TRADE,
-      sellAmount: sellAmountCryptoPrecision,
-      buyAmount: buyAmountCryptoPrecision,
+      sellAmountCryptoPrecision,
+      buyAmountCryptoPrecision,
       sources: [{ name: 'thorchain', proportion: '1' }],
       buyAsset,
       sellAsset,
       bip44Params,
-      minimum: minimumCryptoHuman,
+      minimumCryptoHuman,
     }
 
     const { chainNamespace } = fromAssetId(sellAsset.assetId)
@@ -118,7 +118,7 @@ export const getThorTradeQuote: GetThorTradeQuote = async ({ deps, input }) => {
             deps,
             sellAsset,
             buyAsset,
-            sellAmount: sellAmountCryptoPrecision,
+            sellAmountCryptoPrecision,
             slippageTolerance: DEFAULT_SLIPPAGE,
             destinationAddress: receiveAddress,
             buyAssetTradeFeeUsd: buyAssetTradeFeeUsdOrMinimum,
@@ -142,7 +142,7 @@ export const getThorTradeQuote: GetThorTradeQuote = async ({ deps, input }) => {
             deps,
             sellAsset,
             buyAsset,
-            sellAmount: sellAmountCryptoPrecision,
+            sellAmountCryptoPrecision,
             slippageTolerance: DEFAULT_SLIPPAGE,
             destinationAddress: receiveAddress,
             xpub: (input as GetUtxoTradeQuoteInput).xpub,
@@ -150,7 +150,7 @@ export const getThorTradeQuote: GetThorTradeQuote = async ({ deps, input }) => {
           })
 
           const feeData = await getBtcTxFees({
-            sellAmount: sellAmountCryptoPrecision,
+            sellAmountCryptoPrecision,
             vault,
             opReturnData,
             pubkey,
@@ -177,7 +177,6 @@ export const getThorTradeQuote: GetThorTradeQuote = async ({ deps, input }) => {
             feeData: {
               fee: feeData.fast.txFee,
               networkFee: feeData.fast.txFee,
-              tradeFee: buyAssetTradeFeeUsdOrDefault,
               buyAssetTradeFeeUsd: buyAssetTradeFeeUsdOrDefault,
               sellAssetTradeFeeUsd: '0',
               chainSpecific: { estimatedGas: feeData.fast.chainSpecific.gasLimit },

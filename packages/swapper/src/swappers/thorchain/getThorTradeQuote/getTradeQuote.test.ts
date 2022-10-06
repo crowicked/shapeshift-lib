@@ -30,11 +30,11 @@ Web3.mockImplementation(() => ({
 const mockedAxios = jest.mocked(thorService, true)
 
 const quoteResponse: TradeQuote<KnownChainIds.EthereumMainnet> = {
-  minimum: '0.000611179317810745884',
+  minimumCryptoHuman: '0.000611179317810745884',
   maximum: '100000000000000000000000000',
-  sellAmount: '10000000000000000000', // 1000 FOX
+  sellAmountCryptoPrecision: '10000000000000000000', // 1000 FOX
   allowanceContract: '0x3624525075b88B24ecc29CE226b0CEc1fFcB6976',
-  buyAmount: '784000000000000',
+  buyAmountCryptoPrecision: '784000000000000',
   feeData: {
     fee: '700000',
     chainSpecific: { estimatedGas: '100000', approvalFee: '700000', gasPrice: '7' },
@@ -74,7 +74,7 @@ describe('getTradeQuote', () => {
     ]
     const input = {
       ...quoteInput,
-      sellAmount: '10000000000000000000', // 100 FOX
+      sellAmountCryptoPrecision: '10000000000000000000', // 100 FOX
       buyAsset: ETH,
       sellAsset: FOX,
       rate: '1',
